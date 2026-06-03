@@ -1,6 +1,6 @@
 # GLB Shrink
 
-**Compress any GLB 3D model for the web** — drop a file, see it side-by-side in Three.js, and download a Draco-compressed asset ready for production.
+**Compress any GLB 3D model** — drop a file, see it side-by-side in Three.js, and download a lighter asset ready for games, apps, AR/VR, or the web.
 
 Real-world result from the tool:
 
@@ -13,9 +13,9 @@ Real-world result from the tool:
 
 ## Why GLB Shrink?
 
-AI-generated and scanned 3D models often ship at **5–60+ MB** with hundreds of thousands to millions of triangles. That is fine for offline tools, but too heavy for websites, games, and Three.js scenes.
+AI-generated and scanned 3D models often ship at **5–60+ MB** with hundreds of thousands to millions of triangles. That is fine for offline tools, but too heavy for real-time projects — games, interactive apps, AR experiences, and the web.
 
-GLB Shrink turns bloated GLBs into **web-ready assets** in seconds — with a live before/after preview so you can actually see what you are getting.
+GLB Shrink turns bloated GLBs into **lighter, production-ready assets** in seconds — with a live before/after preview so you can actually see what you are getting.
 
 No Blender. No command line. No guesswork.
 
@@ -37,13 +37,13 @@ No triangle ratios. No geometric error sliders. Just:
 | Option | When to use |
 |--------|-------------|
 | **Smallest file** | Background props, far from the camera |
-| **Balanced** | Most websites and games *(default)* |
+| **Balanced** | Most projects — games, apps, scenes *(default)* |
 | **Sharpest** | Close-up or hero objects |
 
 Fine-tune between presets with a single **Smaller file ↔ Sharper look** slider. A plain-English hint updates as you adjust.
 
 ### Production-grade compression
-Built on the same pipeline used in real Three.js game projects:
+Built on the same pipeline used in real-time 3D projects:
 
 1. Strip existing meshopt / Draco / quantization extensions
 2. Weld duplicate vertices
@@ -57,7 +57,7 @@ Output includes:
 - `KHR_draco_mesh_compression` — geometry
 - `EXT_texture_webp` — textures
 
-Both are supported out of the box by Three.js `GLTFLoader` + `DRACOLoader`.
+Both are supported by Three.js, Unity, Unreal Engine, Godot, and most modern glTF runtimes.
 
 ---
 
@@ -105,7 +105,7 @@ Serves the built UI and API from a single server on port **3847**. Override with
 | Preset | Best for | Typical output |
 |--------|----------|----------------|
 | Smallest file | Distant props, instanced decor | ~3–5k tris, 40–80 KB |
-| Balanced | General web / game use | ~5–8k tris, 60–150 KB |
+| Balanced | General use — games, apps, scenes | ~5–8k tris, 60–150 KB |
 | Sharpest | Close-up viewing, hero assets | ~15–40k tris, 150–400 KB |
 
 Use the fine-tune slider to nudge between presets without touching technical parameters.
@@ -155,7 +155,9 @@ glb-shrink/
 
 ---
 
-## Using compressed models in Three.js
+## Using compressed models
+
+Draco-compressed GLBs work across most real-time 3D pipelines. Example with **Three.js**:
 
 ```javascript
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';

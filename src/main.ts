@@ -178,7 +178,7 @@ let outputFileName = 'model-draco.glb';
 
 const HINTS: Record<number, string> = {
   0: 'Tiny file — best for background props you barely notice.',
-  50: 'Balanced — the sweet spot for most web projects.',
+  50: 'Balanced — the sweet spot for most projects.',
   100: 'Maximum detail — for close-up viewing, larger file size.',
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "glb-shrink",
   "version": "1.0.0",
-  "description": "Compress GLB 3D models for the web — before/after preview with Draco + WebP",
+  "description": "Compress GLB 3D models for games, apps, and real-time 3D — before/after preview with Draco + WebP",
   "type": "module",
   "private": false,
   "license": "MIT",

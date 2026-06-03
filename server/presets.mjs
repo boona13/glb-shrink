@@ -11,7 +11,7 @@ const SMALLEST = {
 const BALANCED = {
   id: 'balanced',
   label: 'Balanced',
-  hint: 'Recommended for most websites',
+  hint: 'Recommended for most projects',
   simplifyRatio: 0.008,
   simplifyError: 0.02,
   textureEdge: 384,
@@ -56,7 +56,7 @@ export function getPresetHint(quality) {
   const q = Math.max(0, Math.min(100, Number(quality) || 50));
   if (q <= 20) return 'Tiny file — best for background props you barely notice.';
   if (q <= 40) return 'Small file — good for distant scene objects.';
-  if (q <= 60) return 'Balanced — the sweet spot for most web projects.';
+  if (q <= 60) return 'Balanced — the sweet spot for most projects.';
   if (q <= 80) return 'More detail — edges and textures stay sharper.';
   return 'Maximum detail — for close-up viewing, larger file size.';
 }
