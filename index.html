@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLB Shrink — Compress 3D models for the web</title>
+    <meta name="description" content="Drop a GLB, see before & after in 3D, download a Draco-compressed asset ready for Three.js." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="hero" id="hero" hidden>
+        <div class="hero-inner">
+          <div class="hero-label">File size</div>
+          <div class="hero-sizes">
+            <span class="size-before" id="size-before">—</span>
+            <span class="hero-arrow" aria-hidden="true">→</span>
+            <span class="size-after" id="size-after">—</span>
+          </div>
+          <div class="hero-badge" id="savings-badge">—</div>
+          <div class="hero-sub" id="hero-sub"></div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel">
+          <div class="brand">
+            <div class="brand-mark">◆</div>
+            <div>
+              <h1>GLB Shrink</h1>
+              <p>Draco + WebP compression for web-ready 3D</p>
+            </div>
+          </div>
+
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Drop GLB file here">
+            <input type="file" id="file-input" accept=".glb" hidden />
+            <div class="dropzone-icon">⬆</div>
+            <p class="dropzone-title">Drop your GLB here</p>
+            <p class="dropzone-hint">or click to browse · up to 200 MB</p>
+          </div>
+
+          <div class="file-meta" id="file-meta" hidden>
+            <span class="file-name" id="file-name"></span>
+            <span class="file-tris" id="file-tris"></span>
+          </div>
+
+          <section class="controls" id="controls" hidden>
+            <div class="quality-section">
+              <p class="quality-question">How sharp should it look?</p>
+              <div class="preset-cards" id="preset-cards" role="radiogroup" aria-label="Compression quality">
+                <button type="button" class="preset-card" data-quality="0">
+                  <span class="preset-icon">📦</span>
+                  <span class="preset-label">Smallest file</span>
+                  <span class="preset-hint">Far away on screen</span>
+                </button>
+                <button type="button" class="preset-card active" data-quality="50">
+                  <span class="preset-icon">⚖️</span>
+                  <span class="preset-label">Balanced</span>
+                  <span class="preset-hint">Most websites</span>
+                </button>
+                <button type="button" class="preset-card" data-quality="100">
+                  <span class="preset-icon">✨</span>
+                  <span class="preset-label">Sharpest</span>
+                  <span class="preset-hint">Close-up viewing</span>
+                </button>
+              </div>
+
+              <label class="field tune-field">
+                <div class="tune-labels">
+                  <span>Smaller file</span>
+                  <span>Sharper look</span>
+                </div>
+                <input type="range" id="quality" min="0" max="100" step="1" value="50" />
+                <p class="quality-hint" id="quality-hint">Balanced — the sweet spot for most web projects.</p>
+              </label>
+            </div>
+
+            <button class="btn-primary" id="compress-btn">
+              <span class="btn-label">Compress model</span>
+              <span class="btn-spinner" hidden></span>
+            </button>
+
+            <button class="btn-secondary" id="download-btn" hidden>
+              Download compressed GLB
+            </button>
+          </section>
+
+          <footer class="panel-footer">
+            <a href="https://github.com/boona13/glb-shrink" target="_blank" rel="noopener">Open source</a>
+            <span>·</span>
+            <span>Three.js ready</span>
+          </footer>
+        </aside>
+
+        <section class="viewers">
+          <div class="viewer-card">
+            <div class="viewer-header">
+              <span class="viewer-tag before">Before</span>
+              <span class="viewer-stat" id="before-stat">—</span>
+            </div>
+            <canvas id="canvas-before" aria-label="Original model preview"></canvas>
+            <div class="viewer-empty" id="empty-before">
+              <span>Original model</span>
+            </div>
+          </div>
+
+          <div class="viewer-divider" aria-hidden="true"></div>
+
+          <div class="viewer-card">
+            <div class="viewer-header">
+              <span class="viewer-tag after">After</span>
+              <span class="viewer-stat" id="after-stat">—</span>
+            </div>
+            <canvas id="canvas-after" aria-label="Compressed model preview"></canvas>
+            <div class="viewer-empty" id="empty-after">
+              <span>Compressed preview</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
